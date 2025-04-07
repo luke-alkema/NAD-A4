@@ -68,12 +68,14 @@ def load_post_data_view(request, num_posts):
 @login_required
 def post_detail_data_view(request, pk):
     obj = Post.objects.get(pk=pk)
+    profile = Profile.objects.get(user=obj.author.user)
     data = {
         'id': obj.id,
         'title': obj.title,
         'body': obj.body,
         'author': obj.author.user.username,
         'logged_in': request.user.username,
+        'avatar': profile.avatar.url,
     }
     return JsonResponse({'data':data})
 

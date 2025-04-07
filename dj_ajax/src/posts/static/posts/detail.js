@@ -1,5 +1,6 @@
 console.log(window.location)
 const postBox = document.getElementById('post-box')
+const profileBox = document.getElementById('profile-box')
 const backBtn = document.getElementById('back-btn')
 const alertBox = document.getElementById('alert-box')
 const updateBtn = document.getElementById('update-btn')
@@ -45,6 +46,8 @@ $.ajax({
         bodyEl.setAttribute('class', 'mt-1')
         bodyEl.setAttribute('id', 'body')
 
+       
+
         titleEl.textContent = data.title
         bodyEl.textContent = data.body
 
@@ -53,6 +56,23 @@ $.ajax({
 
         titleInput.value = data.title
         bodyInput.value = data.body
+
+        const profileImage = document.createElement('img')
+        profileImage.setAttribute('class', 'mt-1')
+        profileImage.setAttribute('id', 'profile-picture')
+        profileImage.setAttribute('class', 'rounded-circle')
+        profileImage.setAttribute('style', 'width: 70px; height:70px;')
+        profileImage.setAttribute('src', data.avatar)
+        profileImage.setAttribute('alt', 'Profile Photo')
+
+        const authorName = document.createElement('div')
+        authorName.setAttribute('class', 'justify-content-lg-center')
+        authorName.setAttribute('id', 'authorName')
+        authorName.textContent = data.author
+
+        profileBox.appendChild(profileImage)
+        profileBox.appendChild(authorName)
+
 
         spinnerBox.classList.add('not-visible')
     },
